@@ -29,3 +29,11 @@ const fakeEpisode = [
 		}
 	}
 ];
+
+test('Initial component render and rerender with props', () => {
+	const { rerender, queryAllByTestId } = render(<Episodes episodes={[]} />);
+	expect(queryAllByTestId(/episodecontainer/i)).toStrictEqual([]);
+
+	rerender(<Episodes episodes={fakeEpisode} />);
+	expect(queryAllByTestId(/episodescontainer/i)).toHaveLength(1);
+});
